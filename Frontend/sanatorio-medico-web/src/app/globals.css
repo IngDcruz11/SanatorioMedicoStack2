@@ -1,0 +1,1483 @@
+/* ============================================================
+   1. VARIABLES GENERALES DEL SISTEMA
+============================================================ */
+:root {
+  --color-primario: #0799b6;
+  --color-primario-oscuro: #047f99;
+  --color-primario-claro: #e8f8fb;
+  --color-azul-oscuro: #102d66;
+  --color-texto: #34558c;
+  --color-texto-secundario: #6f86ac;
+  --color-fondo: #f4f9fd;
+  --color-blanco: #ffffff;
+  --color-borde: #d9e8f3;
+  --color-verde: #0caf70;
+  --color-verde-claro: #e4f8ef;
+  --color-amarillo: #f3b51b;
+  --color-amarillo-claro: #fff6dc;
+  --color-rojo: #ef4444;
+  --color-rojo-claro: #fff0f0;
+  --alto-header: 72px;
+  --ancho-sidebar: 270px;
+  --radio-pequeno: 9px;
+  --radio-medio: 14px;
+  --radio-grande: 18px;
+  --sombra-suave:
+    0 4px 18px rgba(38, 76, 120, 0.04);
+}
+
+/* ============================================================
+   2. REINICIO GENERAL
+============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ============================================================
+   3. ESTRUCTURA PRINCIPAL DEL SISTEMA
+============================================================ */
+.app-container {
+  min-height: 100vh;
+  background: var(--color-fondo);
+}
+
+.app-body {
+  display: flex;
+  min-height:
+    calc(100vh - var(--alto-header));
+}
+
+.app-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background:
+    linear-gradient(
+      135deg,
+      #f7fbfe 0%,
+      #f2f8fc 100%
+    );
+}
+
+/* ============================================================
+   4. HEADER PRINCIPAL
+============================================================ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--alto-header);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0 30px;
+  background: var(--color-blanco);
+  border-bottom:
+    1px solid var(--color-borde);
+}
+
+/* ============================================================
+   5. IDENTIDAD DEL SISTEMA
+============================================================ */
+.app-brand {
+  width:
+    calc(var(--ancho-sidebar) - 30px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.app-brand-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background:
+    linear-gradient(
+      135deg,
+      #0aa6c0,
+      #078ba8
+    );
+  color: var(--color-blanco);
+}
+
+.app-brand-name {
+  color: var(--color-azul-oscuro);
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   6. BUSCADOR DEL HEADER
+============================================================ */
+.app-header-search {
+  flex: 1;
+  max-width: 600px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 17px;
+  background: #f8fbfd;
+  border:
+    1px solid #d4e5f1;
+  border-radius: 12px;
+}
+
+.app-header-search-icon {
+  flex-shrink: 0;
+  color: #5676a6;
+}
+
+.app-header-search input {
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-texto);
+}
+
+.app-header-search input::placeholder {
+  color: #8095b5;
+}
+
+/* ============================================================
+   7. USUARIO Y SALIR
+============================================================ */
+.app-header-user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.header-user-button,
+.header-exit-button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--color-azul-oscuro);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.header-user-button:hover,
+.header-exit-button:hover {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+}
+
+.header-user-avatar {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border:
+    1px solid var(--color-borde);
+  border-radius: 50%;
+  background: #f4f9fd;
+  color: #5577aa;
+}
+
+.header-user-text,
+.header-exit-text {
+  white-space: nowrap;
+}
+
+.header-exit-icon {
+  flex-shrink: 0;
+  color: var(--color-primario);
+}
+
+.header-separator {
+  width: 1px;
+  height: 31px;
+  flex-shrink: 0;
+  background:
+    var(--color-borde);
+}
+
+/* ============================================================
+   8. SIDEBAR
+============================================================ */
+.sidebar {
+  width: var(--ancho-sidebar);
+  min-height:
+    calc(100vh - var(--alto-header));
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:
+    26px 18px 18px;
+  background:
+    var(--color-blanco);
+  border-right:
+    1px solid var(--color-borde);
+}
+
+/* ============================================================
+   9. MENÚ PRINCIPAL DEL SIDEBAR
+============================================================ */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sidebar-link,
+.sidebar-module-title,
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  border-radius: 10px;
+  color: var(--color-texto);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* ============================================================
+   10. OPCIONES PRINCIPALES DEL SIDEBAR
+============================================================ */
+.sidebar-link {
+  gap: 13px;
+  padding: 10px 14px;
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+  color: #5776a6;
+}
+
+.sidebar-link:hover {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+}
+
+.sidebar-link:hover svg {
+  color:
+    var(--color-primario);
+}
+
+/* ============================================================
+   11. MÓDULO SUCURSALES
+============================================================ */
+.sidebar-module {
+  margin: 3px 0;
+}
+
+.sidebar-module-title {
+  width: 100%;
+  gap: 13px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  color:
+    var(--color-azul-oscuro);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-module-title:hover {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+}
+
+.sidebar-module-title svg {
+  flex-shrink: 0;
+  color: #5776a6;
+}
+
+.sidebar-module-title:hover svg {
+  color:
+    var(--color-primario);
+}
+
+/* ============================================================
+   12. FLECHA DEL MÓDULO SUCURSALES
+============================================================ */
+.sidebar-arrow {
+  margin-left: auto;
+  transition:
+    transform 0.2s ease;
+}
+
+.sidebar-arrow-open {
+  transform:
+    rotate(180deg);
+}
+
+/* ============================================================
+   13. SUBMENÚ DE SUCURSALES
+============================================================ */
+.sidebar-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 3px;
+  padding-left: 34px;
+}
+
+.sidebar-sublink {
+  position: relative;
+  gap: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.sidebar-sublink svg {
+  flex-shrink: 0;
+  color: #6480aa;
+}
+
+.sidebar-sublink:hover {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+}
+
+.sidebar-sublink:hover svg {
+  color:
+    var(--color-primario);
+}
+
+/* ============================================================
+   14. OPCIONES ACTIVAS DEL SIDEBAR
+============================================================ */
+.sidebar-link-active {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+  font-weight: 600;
+}
+
+.sidebar-link-active svg {
+  color:
+    var(--color-primario);
+}
+
+.sidebar-sublink-active {
+  position: relative;
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario-oscuro);
+  font-weight: 600;
+}
+
+.sidebar-sublink-active svg {
+  color:
+    var(--color-primario);
+}
+
+.sidebar-sublink-active::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 5px;
+  bottom: 5px;
+  width: 5px;
+  border-radius:
+    0 5px 5px 0;
+  background:
+    var(--color-primario);
+}
+
+/* ============================================================
+   15. SEPARADOR DEL SIDEBAR
+============================================================ */
+.sidebar-divider {
+  height: 1px;
+  margin: 18px 0;
+  background:
+    var(--color-borde);
+}
+
+/* ============================================================
+   16. PIE DEL SIDEBAR
+============================================================ */
+.sidebar-footer {
+  padding-top: 18px;
+  border-top:
+    1px solid var(--color-borde);
+}
+
+/* ============================================================
+   17. PÁGINA CONSULTA DE SUCURSALES
+============================================================ */
+.sucursales-page {
+  width: 100%;
+  padding:
+    38px 34px 45px;
+}
+
+/* ============================================================
+   18. ENCABEZADO DE CONSULTA DE SUCURSALES
+============================================================ */
+.sucursales-hero {
+  position: relative;
+  min-height: 125px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: hidden;
+  padding:
+    8px 20px 20px 4px;
+}
+
+.sucursales-hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.sucursales-hero h1 {
+  margin:
+    0 0 7px;
+  color: #09245e;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.sucursales-hero p {
+  margin: 0;
+  color: #5675a9;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   19. DECORACIÓN MÉDICA DEL ENCABEZADO
+============================================================ */
+.sucursales-hero-decoration {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  width: 44%;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:
+    rgba(41, 165, 205, 0.25);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.sucursales-hero-decoration::before,
+.sucursales-hero-decoration::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 70px;
+  border-top:
+    4px solid
+    rgba(66, 179, 218, 0.15);
+  border-bottom:
+    4px solid
+    rgba(66, 179, 218, 0.15);
+  border-radius: 50%;
+  transform:
+    rotate(-10deg);
+}
+
+.sucursales-hero-decoration::after {
+  transform:
+    rotate(10deg);
+}
+
+.medical-line {
+  width: 170px;
+  height: 2px;
+  margin-right: -5px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(22, 160, 202, 0.35),
+      transparent
+    );
+}
+
+.medical-circle {
+  position: absolute;
+  border-radius: 50%;
+  background:
+    rgba(27, 171, 214, 0.12);
+}
+
+.medical-circle-one {
+  width: 14px;
+  height: 14px;
+  top: 10px;
+  right: 30%;
+}
+
+.medical-circle-two {
+  width: 8px;
+  height: 8px;
+  top: 35px;
+  right: 18%;
+}
+
+.medical-circle-three {
+  width: 20px;
+  height: 20px;
+  bottom: 12px;
+  right: 5%;
+}
+
+/* ============================================================
+   20. TARJETAS DE RESUMEN
+============================================================ */
+.summary-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(190px, 1fr)
+    );
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.summary-card {
+  min-height: 128px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px;
+  background:
+    var(--color-blanco);
+  border:
+    1px solid var(--color-borde);
+  border-radius:
+    var(--radio-medio);
+  box-shadow:
+    var(--sombra-suave);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+  transform:
+    translateY(-2px);
+  box-shadow:
+    0 7px 22px
+    rgba(38, 76, 120, 0.08);
+}
+
+.summary-icon {
+  width: 66px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.summary-icon-blue {
+  background: #e7f6fb;
+  color: #0799b6;
+}
+
+.summary-icon-green {
+  background:
+    var(--color-verde-claro);
+  color:
+    var(--color-verde);
+}
+
+.summary-icon-yellow {
+  background:
+    var(--color-amarillo-claro);
+  color:
+    var(--color-amarillo);
+}
+
+.summary-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  min-height: 39px;
+  color: #4f70a7;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.summary-value {
+  margin-top: 3px;
+  color: #09245e;
+  font-size: 37px;
+  line-height: 1;
+  font-weight: 750;
+}
+
+/* ============================================================
+   21. PANEL DEL LISTADO DE SUCURSALES
+============================================================ */
+.branches-panel {
+  overflow: hidden;
+  background:
+    var(--color-blanco);
+  border:
+    1px solid var(--color-borde);
+  border-radius:
+    var(--radio-grande);
+  box-shadow:
+    var(--sombra-suave);
+}
+
+/* ============================================================
+   22. CABECERA DEL LISTADO
+============================================================ */
+.branches-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding:
+    24px 26px 20px;
+}
+
+.branches-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+}
+
+.branches-title-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #e7f6fb;
+  color:
+    var(--color-primario);
+}
+
+.branches-panel-title h2 {
+  margin: 0;
+  color: #09245e;
+  font-size: 24px;
+  font-weight: 750;
+}
+
+/* ============================================================
+   23. CONTROLES DEL LISTADO
+============================================================ */
+.branches-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.branches-search {
+  width: 310px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+  border:
+    1px solid #d5e5f1;
+  border-radius: 11px;
+  background: #f9fbfd;
+  color: #5676a6;
+}
+
+.branches-search input {
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color:
+    var(--color-texto);
+}
+
+.branches-search input::placeholder {
+  color: #7d93b4;
+}
+
+/* ============================================================
+   24. BOTÓN NUEVA SUCURSAL
+============================================================ */
+.button-new-branch {
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 21px;
+  border: none;
+  border-radius: 10px;
+  background:
+    linear-gradient(
+      135deg,
+      #0aa5c0,
+      #078da9
+    );
+  color:
+    var(--color-blanco);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow:
+    0 5px 13px
+    rgba(8, 153, 182, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button-new-branch:hover {
+  transform:
+    translateY(-1px);
+  box-shadow:
+    0 7px 17px
+    rgba(8, 153, 182, 0.23);
+}
+
+/* ============================================================
+   25. CONTENEDOR DE LA TABLA
+============================================================ */
+.branches-table-container {
+  width: 100%;
+  overflow-x: auto;
+  padding:
+    0 26px;
+}
+
+/* ============================================================
+   26. TABLA DE SUCURSALES
+============================================================ */
+.branches-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  color: #173c79;
+}
+
+.branches-table thead {
+  background: #f2f7fb;
+}
+
+.branches-table th {
+  height: 55px;
+  padding: 0 16px;
+  color: #4b6ba1;
+  font-size: 14px;
+  font-weight: 650;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom:
+    1px solid var(--color-borde);
+}
+
+.branches-table th:first-child {
+  border-radius:
+    10px 0 0 10px;
+}
+
+.branches-table th:last-child {
+  border-radius:
+    0 10px 10px 0;
+}
+
+.branches-table th span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.branches-table td {
+  height: 64px;
+  padding: 0 16px;
+  color: #173b79;
+  font-size: 15px;
+  border-bottom:
+    1px solid #e3edf4;
+}
+
+.branches-table tbody tr {
+  transition:
+    background-color 0.15s ease;
+}
+
+.branches-table tbody tr:hover {
+  background: #fbfdff;
+}
+
+.actions-column {
+  text-align: center !important;
+}
+
+/* ============================================================
+   27. ESTADO DE LA SUCURSAL
+============================================================ */
+.status-badge {
+  min-width: 94px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-active {
+  background:
+    var(--color-verde-claro);
+  color: #07995f;
+}
+
+.status-inactive {
+  background:
+    var(--color-amarillo-claro);
+  color: #b67c00;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ============================================================
+   28. BOTONES EDITAR Y ELIMINAR
+============================================================ */
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.action-button {
+  width: 42px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.action-button:hover {
+  transform:
+    translateY(-1px);
+}
+
+.action-edit {
+  background: #e8f5ff;
+  color: #078df0;
+}
+
+.action-edit:hover {
+  background: #d9efff;
+}
+
+.action-delete {
+  background:
+    var(--color-rojo-claro);
+  color:
+    var(--color-rojo);
+}
+
+.action-delete:hover {
+  background: #ffe1e1;
+}
+
+/* ============================================================
+   29. PIE DE LA TABLA
+============================================================ */
+.branches-table-footer {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding:
+    17px 26px 20px;
+}
+
+.branches-table-footer p {
+  margin: 0;
+  color: #5271a6;
+  font-size: 14px;
+}
+
+/* ============================================================
+   30. PAGINACIÓN
+============================================================ */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-button {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: #f3f7fb;
+  color: #5575a7;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.pagination-button:hover {
+  background:
+    var(--color-primario-claro);
+  color:
+    var(--color-primario);
+}
+
+.pagination-active {
+  background:
+    linear-gradient(
+      135deg,
+      #0aa5c0,
+      #078da9
+    );
+  color:
+    var(--color-blanco);
+}
+
+.pagination-active:hover {
+  color:
+    var(--color-blanco);
+}
+
+/* ============================================================
+   31. ACCESIBILIDAD
+============================================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline:
+    3px solid
+    rgba(8, 155, 181, 0.35);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   32. RESPONSIVE - MONITORES MEDIANOS
+============================================================ */
+@media (max-width: 1250px) {
+  .summary-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(180px, 1fr)
+      );
+  }
+
+  .branches-panel-header {
+    align-items: flex-start;
+  }
+
+  .branches-toolbar {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+/* ============================================================
+   33. RESPONSIVE - TABLET
+============================================================ */
+@media (max-width: 1000px) {
+  .app-header {
+    gap: 18px;
+    padding:
+      0 20px;
+  }
+
+  .app-brand {
+    width: auto;
+  }
+
+  .app-brand-name {
+    display: none;
+  }
+
+  .sidebar {
+    width: 220px;
+  }
+
+  .sucursales-page {
+    padding:
+      28px 22px 38px;
+  }
+
+  .sucursales-hero h1 {
+    font-size: 30px;
+  }
+
+  .sucursales-hero p {
+    font-size: 18px;
+  }
+
+  .sucursales-hero-decoration {
+    width: 38%;
+    opacity: 0.45;
+  }
+
+  .summary-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(180px, 1fr)
+      );
+  }
+
+  .branches-panel-header {
+    flex-direction: column;
+  }
+
+  .branches-toolbar {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .branches-search {
+    flex: 1;
+  }
+}
+
+/* ============================================================
+   34. RESPONSIVE - MÓVIL
+============================================================ */
+@media (max-width: 700px) {
+  .app-header {
+    padding:
+      0 14px;
+    gap: 10px;
+  }
+
+  .app-header-search {
+    display: none;
+  }
+
+  .header-user-text,
+  .header-exit-text {
+    display: none;
+  }
+
+  .header-separator {
+    height: 24px;
+  }
+
+  .app-body {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom:
+      1px solid var(--color-borde);
+  }
+
+  .sidebar-footer {
+    margin-top: 12px;
+  }
+
+  .sucursales-page {
+    padding:
+      22px 14px 32px;
+  }
+
+  .sucursales-hero {
+    min-height: 110px;
+  }
+
+  .sucursales-hero h1 {
+    font-size: 27px;
+  }
+
+  .sucursales-hero p {
+    max-width: 300px;
+    font-size: 16px;
+  }
+
+  .sucursales-hero-decoration {
+    display: none;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    min-height: 105px;
+  }
+
+  .branches-panel-header {
+    padding:
+      20px 18px;
+  }
+
+  .branches-panel-title h2 {
+    font-size: 21px;
+  }
+
+  .branches-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .branches-search {
+    width: 100%;
+  }
+
+  .button-new-branch {
+    width: 100%;
+  }
+
+  .branches-table-container {
+    padding:
+      0 18px;
+  }
+
+  .branches-table-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding:
+      17px 18px 20px;
+  }
+
+  .pagination {
+    align-self: flex-end;
+  }
+}
+
+/* ============================================================
+   35. PANTALLA AGREGAR SUCURSAL
+   (No forma parte de los documentos originales; se construyó
+   siguiendo el mismo sistema visual y de variables ya definido
+   arriba, para mantener consistencia con el resto del sistema.)
+============================================================ */
+.form-panel {
+  overflow: hidden;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-grande);
+  box-shadow: var(--sombra-suave);
+}
+
+.form-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 24px 26px 20px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.form-panel-header h2 {
+  margin: 0;
+  color: #09245e;
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 22px;
+  padding: 26px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--color-azul-oscuro);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 15px;
+  background: #f9fbfd;
+  border: 1px solid #d5e5f1;
+  border-radius: 11px;
+  color: #5676a6;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-input-wrapper:focus-within {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(8, 155, 181, 0.12);
+}
+
+.form-input-wrapper input {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-texto);
+}
+
+.form-input-wrapper input::placeholder {
+  color: #8095b5;
+}
+
+.form-switch {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--color-borde);
+  border-radius: 11px;
+  background: var(--color-amarillo-claro);
+  color: #b67c00;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.form-switch-on {
+  background: var(--color-verde-claro);
+  color: #07995f;
+}
+
+.form-message {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-message-success {
+  background: var(--color-verde-claro);
+  color: #07995f;
+}
+
+.form-message-error {
+  background: var(--color-rojo-claro);
+  color: var(--color-rojo);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 6px;
+}
+
+.button-cancel {
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 21px;
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
+  background: var(--color-blanco);
+  color: var(--color-texto);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button-cancel:hover {
+  background: #f3f7fb;
+}
+
+.button-new-branch:disabled,
+.button-cancel:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   36. RESPONSIVE - FORMULARIO AGREGAR SUCURSAL
+============================================================ */
+@media (max-width: 700px) {
+  .form-body {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .button-cancel,
+  .form-actions .button-new-branch {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   37. MODAL DE EDICIÓN (Sucursales)
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+  background: rgba(16, 45, 102, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 700px;
+  animation: modal-aparecer 0.15s ease;
+}
+
+.modal-content .form-panel-header {
+  position: relative;
+}
+
+.modal-close-button {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9px;
+  background: #f3f7fb;
+  color: #5575a7;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-close-button:hover {
+  background: var(--color-rojo-claro);
+  color: var(--color-rojo);
+}
+
+@keyframes modal-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .modal-overlay {
+    padding: 16px;
+  }
+}
